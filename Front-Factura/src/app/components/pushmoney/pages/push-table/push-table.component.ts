@@ -1,15 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Factura } from 'src/models/factura';
 import { FacturaService } from 'src/services/factura.service';
-
-import { ElementRef} from '@angular/core';
-import * as XLSX from 'xlsx';
-import { MatNativeDateModule } from '@angular/material/core';
+import { TableService } from 'src/services/pages.service';
 
 
 @Component({
@@ -24,23 +19,20 @@ export class PushTableComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<Factura>
   loading?: boolean
 
-  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild('TABLE') table!: ElementRef;
+
 
   constructor(
-    public dialog: MatDialog,
-    private _facturaService: FacturaService,
-    private _snackBar: MatSnackBar
+    private _tableService: TableService,
 
   ){}
 
 
 
   ngOnInit(): void {
-    this.getFacturas()
+    this._tableService.getFacturas()
   }
   
   ngAfterViewInit() {
@@ -48,48 +40,11 @@ export class PushTableComponent implements AfterViewInit, OnInit {
      this.dataSource.sort = this.sort;
   }
 
+  //! Filtro para busqueda en la tabla //
+  applyFilter(event: Event) {}
+
+  //! EXCEL EXPORT //
+  exportAsExcel(){}
   
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-
-
-
-  getFacturas(){
-    this.loading = true
-    setTimeout(()=>{
-      this._facturaService.listaFacturas().subscribe(
-        response => {
-          this.loading = false
-          if(response.facturasInfo){
-            this.dataSource.data = response.facturasInfo /* para que se llenen los campos */
-
-          }
-        },
-        error => {
-          console.log(<any> error);
-        }
-    )
-    }, 700 )
-
-  }
-
-  //! EXCEL IMPORT // ----------------
-
-  exportAsExcel()
-  {
-    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);//converts a DOM TABLE element to a worksheet
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    /* save to file */
-    XLSX.writeFile(wb, 'SheetJS.xlsx');
-
-  }
 }
