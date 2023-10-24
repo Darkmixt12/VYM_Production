@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Factura } from 'src/models/factura';
 
@@ -9,15 +9,16 @@ import { Factura } from 'src/models/factura';
 })
 export class SearchBarComponent {
 
-  dataSource = new MatTableDataSource<Factura>
+  @Input()
+  dataSourceChild = new MatTableDataSource<Factura>
 
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSourceChild.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.dataSourceChild.paginator) {
+      this.dataSourceChild.paginator.firstPage();
     }
   }
 

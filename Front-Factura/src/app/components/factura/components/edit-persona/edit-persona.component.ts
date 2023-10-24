@@ -150,7 +150,13 @@ export class EditPersonaComponent  {
       numMesa: this.form.value.numMesa,
       fechaAlistado: this.form.value.fechaAlistado,
       fechaChequeo: this.form.value.fechaChequeo,
-      horaChequeo: this.form.value.horaChequeo
+      horaChequeo: this.form.value.horaChequeo,
+      agente: this.form.value.agente,
+      push100: this.form.value.push100,
+      push50: this.form.value.push50,
+      push500: this.form.value.push500,
+      push1000: this.form.value.push1000,
+      push5000: this.form.value.push5000,
 
     }
     this._facturaService.updateFactura(this.data.id._id, factura).subscribe((data:any) => {

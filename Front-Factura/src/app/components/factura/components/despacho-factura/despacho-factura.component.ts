@@ -65,7 +65,22 @@ agregarFactura2(form: any){
     numMesa: this.formAddFactura.value.numMesa,
     fechaAlistado: this.formAddFactura.value.fechaAlistado,
     fechaChequeo: this.formAddFactura.value.fechaChequeo,
-    horaChequeo: this.formAddFactura.value.horaChequeo
+    horaChequeo: this.formAddFactura.value.horaChequeo,
+    agente: this.formAddFactura.value.agente,
+    push100: this.formAddFactura.value.push100,
+    push50: this.formAddFactura.value.push50,
+    push500: this.formAddFactura.value.push500,
+    push1000: this.formAddFactura.value.push1000,
+    push5000: this.formAddFactura.value.push5000,
+
+
+
+    // public agente: String,
+    // public push1000: String,
+    // public push500: String,
+    // public push100: String,
+    // public push50: String,
+    // public push5000: String,
     }
   this._facturaService.saveFactura(factura).subscribe(
     response => {

@@ -12,6 +12,13 @@ export class Factura {
         public fechaChequeo: String,
         public numMesa: String,
         public horaChequeo: String,
+        public agente: String,
+        public push1000: String,
+        public push500: String,
+        public push100: String,
+        public push50: String,
+        public push5000: string,
+
     ){}
 }
 

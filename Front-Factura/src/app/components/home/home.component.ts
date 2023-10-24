@@ -108,7 +108,13 @@ export class HomeComponent implements OnInit {
       numMesa: this.formAddFactura.value.numMesa,
       fechaAlistado: this.formAddFactura.value.fechaAlistado.toISOString().slice(0,10),
       fechaChequeo: this.formAddFactura.value.fechaChequeo.toISOString().slice(0,10),
-      horaChequeo: this.formAddFactura.value.horaChequeo
+      horaChequeo: this.formAddFactura.value.horaChequeo,
+      agente: this.formAddFactura.value.agente,
+      push100: this.formAddFactura.value.push100,
+      push50: this.formAddFactura.value.push50,
+      push500: this.formAddFactura.value.push500,
+      push1000: this.formAddFactura.value.push1000,
+      push5000: this.formAddFactura.value.push5000,
       
     }
 

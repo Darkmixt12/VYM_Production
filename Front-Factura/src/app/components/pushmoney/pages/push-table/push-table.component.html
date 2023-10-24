@@ -5,8 +5,15 @@
 <mat-card>
 <mat-card-content>
 
-  <shared-search-bar></shared-search-bar>
 
+  <mat-form-field>
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input autocomplete="off" />
+    
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="exportAsExcel()">Export as Excel</button>
+
+  <div  #TABLE>
   <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -15,25 +22,23 @@
             <td mat-cell *matCellDef="let element">{{ element.facturasId }}</td>
           </ng-container>
 
-          <ng-container matColumnDef="numPedido">
+          <ng-container matColumnDef="cliente">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente.</th>
-            <td mat-cell *matCellDef="let element">{{ element.numPedido }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.client }}</td>
           </ng-container>
+
           
     <!-- Position Column -->
-    <ng-container matColumnDef="cliente">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Agente.</th>
-      <td mat-cell *matCellDef="let element">{{ element.client | uppercase }}</td>
-    </ng-container>
+
     <!-- Position Column -->
-    <ng-container matColumnDef="pushM">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente.</th>
-      <td mat-cell *matCellDef="let element">{{ element.pushMoney }}</td>
+    <ng-container matColumnDef="agente">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Agente.</th>
+      <td mat-cell *matCellDef="let element">{{ element.agente }}</td>
     </ng-container>
     <!-- Numero de factura -->
     <ng-container matColumnDef="Monto">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Monto.</th>
-      <td mat-cell *matCellDef="let element">{{ element.pushMoney }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.pushMoney | currency: '¢ ' }}</td>
     </ng-container>
     <!--- FECHA REGISTRO -->
     <ng-container matColumnDef="fechaRegDia_db">
@@ -41,6 +46,41 @@
         Fecha de Registro.
       </th>
       <td mat-cell *matCellDef="let element">{{ element.fechaRegDia_db | date: 'dd/MM/YYYY' }}</td>
+    </ng-container>
+
+    <!--! VALORES DEL PUSH -->
+
+    <ng-container matColumnDef="push50">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>50.</th>
+      <td mat-cell *matCellDef="let element">{{ element.push50 }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="push500">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        500.
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.push500 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="push100">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        100.
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.push100 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="push1000">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        1000.
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.push1000 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="push5000">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        5000.
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.push5000 }}</td>
     </ng-container>
     
 
@@ -58,7 +98,10 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    
   </table>
+</div>
+
   
 
 </mat-card-content>
