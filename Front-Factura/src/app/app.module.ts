@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { routing, appRoutingProviders } from './app.routing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http'; /* formularios */
-import { FormsModule } from '@angular/forms'; /* formularios  --save rxjs-compat si no funciona el RXJS*/ 
+import { FormsModule } from '@angular/forms'; /* formularios  --save rxjs-compat si no funciona el RXJS*/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; /*angular material */
 
 
 /* ANGULAR MATERIALS */
 
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 
@@ -40,6 +40,7 @@ import { SharedModule } from './shared/shared.module';
     PushmoneyModule,
     MaterialModule,
     SharedModule,
+    HttpClientModule,
 
 
     BrowserModule,
@@ -52,9 +53,9 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     BrowserAnimationsModule,
 
-    
 
-    
+
+
   ],
   providers: [appRoutingProviders,
   {

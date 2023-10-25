@@ -1,3 +1,4 @@
+
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -11,7 +12,7 @@ import { TableService } from 'src/services/pages.service';
   selector: 'app-push-table',
   templateUrl: './push-table.component.html',
   styleUrls: ['./push-table.component.css'],
-  providers: [FacturaService] 
+  providers: [FacturaService, TableService]
 })
 export class PushTableComponent implements AfterViewInit, OnInit {
 
@@ -26,7 +27,7 @@ export class PushTableComponent implements AfterViewInit, OnInit {
 
   constructor(
     private _tableService: TableService,
-
+    private _facturaService: FacturaService
   ){}
 
 
@@ -34,7 +35,7 @@ export class PushTableComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this._tableService.getFacturas()
   }
-  
+
   ngAfterViewInit() {
      this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
@@ -45,6 +46,6 @@ export class PushTableComponent implements AfterViewInit, OnInit {
 
   //! EXCEL EXPORT //
   exportAsExcel(){}
-  
+
 
 }

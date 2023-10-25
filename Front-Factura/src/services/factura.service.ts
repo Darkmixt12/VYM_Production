@@ -10,7 +10,7 @@ import { Ncredito } from 'src/models/notaCredito';
 export class FacturaService {
     public url:string;
     constructor(
-      private _http: HttpClient,  
+      private _http: HttpClient,
     ){
         this.url = Global.url
     }
@@ -20,7 +20,7 @@ export class FacturaService {
     }
 
     saveFactura(factura:Factura): Observable<any>{
-        
+
         let params = JSON.stringify(factura)
         let headers = new HttpHeaders().set('Content-Type','application/json'); /* oara que la informacion vaya en ese formato */
 
@@ -28,7 +28,7 @@ export class FacturaService {
     }
 
     saveCredito(credito:Ncredito): Observable<any>{
-        
+
         let params = JSON.stringify(credito)
         let headers = new HttpHeaders().set('Content-Type','application/json'); /* oara que la informacion vaya en ese formato */
 
@@ -38,13 +38,13 @@ export class FacturaService {
 
     listaFacturas(): Observable<any>{
         let headers = new HttpHeaders().set('Content-Type','application/json');
-        
+
         return this._http.get(this.url+'facturas-list', {headers: headers})
     }
 
     listaCreditos(): Observable<any>{
         let headers = new HttpHeaders().set('Content-Type','application/json');
-        
+
         return this._http.get(this.url+'creditos-list', {headers: headers})
     }
 
@@ -57,7 +57,7 @@ export class FacturaService {
         return this._http.delete<void>(this.url+'facturas-deleted/'+id)
     }
 
-    
+
     deleteCredito(id: any): Observable<void>{
         return this._http.delete<void>(this.url+'creditos-deleted/'+id)
     }
